@@ -1,0 +1,26 @@
+void main() {
+  List<Map<String, dynamic>> students = [
+    {"name": "Alice", "scores": [85, 90, 78]},
+    {"name": "Bob", "scores": [88, 76, 95]},
+    {"name": "Charlie", "scores": [90, 92, 85]},
+  ];
+
+  List<Map<String, dynamic>> results = [];
+
+  for (var student in students) {
+    var name = student["name"] as String;
+    var scores = student["scores"] as List<dynamic>;
+    var total = 0.0;
+    for (var score in scores) {
+      total += score;
+    }
+    var average = total / scores.length;
+    results.add({"name": name, "average": double.parse(average.toStringAsFixed(2))});
+  }
+
+  results.sort((a, b) => (b["average"] as double).compareTo(a["average"] as double));
+
+  for (var result in results) {
+    print("${result['name']}: ${result['average']}");
+  }
+}
